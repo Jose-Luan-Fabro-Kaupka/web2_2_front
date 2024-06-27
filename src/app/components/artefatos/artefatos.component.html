@@ -1,0 +1,40 @@
+<h1 class="h1 text-center mb-4">Artefatos</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Id</th>
+      <th scope="col">Título</th>
+      <th scope="col">Descrição</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let artefato of artefatos">
+      <td></td>
+      <td>{{artefato.id}}</td>
+      <td>{{artefato.titulo}}</td>
+      <td>{{artefato.descricao}}</td>
+      <td><a [routerLink]="['/artefatos', artefato.id]">Visualizar</a></td>
+      <td><button class="btn btn-danger" (click)="excluirArtefato(artefato.id)">Excluir</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-success" (click)="toggleCriarArtefato()">Criar Artefato</button>
+
+<div *ngIf="criandoArtefato">
+  <form (ngSubmit)="onSubmitCriarArtefato()">
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input type="text" [(ngModel)]="novoArtefato.titulo" name="titulo" id="titulo" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="descricao">Descrição</label>
+      <input type="text" [(ngModel)]="novoArtefato.descricao" name="descricao" id="descricao" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Pronto</button>
+  </form>
+</div>

@@ -1,0 +1,20 @@
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td></td>
+        <td>{{usuario.id}}</td>
+        <td>{{usuario.username}}</td>
+        <td><a [routerLink]="['/usuarios', usuario.id]">Visualizar</a></td>
+        <td><button class="btn btn-danger" (click)="excluirUsuario(usuario.id)">Excluir</button></td>
+      </tr>
+    </tbody>
+  </table>

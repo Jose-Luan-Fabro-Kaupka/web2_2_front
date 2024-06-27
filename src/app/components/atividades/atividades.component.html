@@ -1,0 +1,54 @@
+<h1 class="h1 text-center mb-4">Atividades</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Id</th>
+      <th scope="col">Título</th>
+      <th scope="col">Descrição</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let atividade of atividades">
+      <td></td>
+      <td>{{atividade.id}}</td>
+      <td>{{atividade.titulo}}</td>
+      <td>{{atividade.descricao}}</td>
+      <td><a [routerLink]="['/atividades', atividade.id]">Visualizar</a></td>
+      <td><button class="btn btn-danger" (click)="excluirAtividade(atividade.id)">Excluir</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-success" (click)="toggleCriarAtividade()">Criar Atividade</button>
+
+<div *ngIf="criandoAtividade">
+  <form (ngSubmit)="onSubmitCriarAtividade()">
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input type="text" [(ngModel)]="novaAtividade.titulo" name="titulo" id="titulo" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="descricao">Descrição</label>
+      <input type="text" [(ngModel)]="novaAtividade.descricao" name="descricao" id="descricao" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="usuario">Usuário</label>
+      <select [(ngModel)]="novaAtividade.usuario_id" name="usuario" id="usuario" required class="form-control">
+        <option value="" disabled selected>Selecione um usuário</option>
+        <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{usuario.username}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="artefato">Artefato</label>
+      <select [(ngModel)]="novaAtividade.artefato_id" name="artefato" id="artefato" required class="form-control">
+        <option value="" disabled selected>Selecione um artefato</option>
+        <option *ngFor="let artefato of artefatos" [value]="artefato.id">{{artefato.titulo}}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Pronto</button>
+  </form>
+</div>
